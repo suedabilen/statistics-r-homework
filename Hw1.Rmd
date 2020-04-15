@@ -1,0 +1,221 @@
+---
+title: "STAT253-Homework#1"
+author: "Sueda Bilen - 150117044"
+date: "Monday,March 23,2020"
+output:
+  word_document: default
+  html_document: default
+---
+```{r}
+data1 <- read.csv(file.choose(),header =T, sep =";")
+data1
+```
+#Answer 1: gender is a qualitative variable
+#Age,systolic blood pressure and diastolic b.p. is quantitative and discrete variables.
+#This data is multivariate
+
+
+#Answer 2:For age,systolic bp and diastolic bp variables,we can use pie chart,bar chart,line chart,stem and leaf plots,dotplot and histogram,by this graphical methods we can see the frequency,shape,scale,outliers and the spreading of our data.
+#subsetting my data
+```{r}
+sysbpWomen <- subset(data1, GENDER == 1, select=AGE:SYSBP)
+sysbpMen <- subset(data1, GENDER == 0, select=AGE:SYSBP)
+diasbpWomen <- subset(data1, GENDER == 1, select=c(AGE,DIASBP))
+diasbpMen <- subset(data1, GENDER == 0, select=c(AGE,DIASBP))
+```
+#Answer 3:A:
+```{r}
+mean(sysbpWomen$SYSBP)
+mean(sysbpMen$SYSBP)
+mean(diasbpWomen$DIASBP)
+mean(diasbpMen$DIASBP)
+```
+#Answer 3:B:
+```{r}
+var(sysbpWomen$SYSBP)
+var(sysbpMen$SYSBP)
+var(diasbpWomen$DIASBP)
+var(diasbpMen$DIASBP)
+```
+#Answer 3:C
+```{r}
+sd(sysbpWomen$SYSBP)
+sd(sysbpMen$SYSBP)
+sd(diasbpWomen$DIASBP)
+sd(diasbpMen$DIASBP)
+```
+#Answer 3:D;Upperand Lower Quartiles
+```{r}
+quantile(sysbpWomen$SYSBP,c(0.25,0.75))
+quantile(sysbpMen$SYSBP,c(0.25,0.75))
+quantile(diasbpWomen$DIASBP,c(0.25,0.75))
+quantile(diasbpMen$DIASBP,c(0.25,0.75))
+```
+#Answer 3:E:max and min values
+```{r}
+min(sysbpWomen$SYSBP)
+max(sysbpWomen$SYSBP)
+min(sysbpMen$SYSBP)
+max(sysbpMen$SYSBP)
+min(diasbpWomen$DIASBP)
+max(diasbpWomen$DIASBP)
+min(diasbpMen$DIASBP)
+max(diasbpMen$DIASBP)
+```
+#Answer 3:F:Range
+```{r}
+rangeSysbpWomen <- (max(sysbpWomen$SYSBP)) - (min(sysbpWomen$SYSBP))
+rangeSysbpWomen
+rangeSysbpMen <- max(sysbpMen$SYSBP) - min(sysbpMen$SYSBP)
+rangeSysbpMen 
+rangeDiasbpWomen <- max(diasbpWomen$DIASBP) - min(diasbpWomen$DIASBP)
+rangeDiasbpWomen
+rangeDiasbpMen <- max(diasbpMen$DIASBP) - min(diasbpMen$DIASBP)
+rangeDiasbpMen
+```
+#Answer 3:G
+```{r}
+compareSysbpWomen <- rangeSysbpWomen / sd(sysbpWomen$SYSBP)
+compareSysbpWomen
+compareSysbpMen <- rangeSysbpMen / sd(sysbpMen$SYSBP)
+compareSysbpMen
+compareDiasbpWomen <-rangeDiasbpWomen / sd(diasbpWomen$DIASBP)
+compareDiasbpWomen
+compareDiasbpMen <- rangeDiasbpMen / sd(diasbpMen$DIASBP)
+compareDiasbpMen
+```
+#Answer 3:H
+```{r}
+median(sysbpWomen$SYSBP)
+median(sysbpMen$SYSBP)
+median(diasbpWomen$DIASBP)
+median(diasbpMen$DIASBP)
+```
+#Answer 3:I
+```{r}
+IQR(sysbpWomen$SYSBP)
+IQR(sysbpMen$SYSBP)
+IQR(diasbpWomen$DIASBP)
+IQR(diasbpMen$DIASBP)
+```
+#Answer 3:J
+```{r}
+fivenum(sysbpWomen$SYSBP)
+fivenum(sysbpMen$SYSBP)
+fivenum(diasbpWomen$DIASBP)
+fivenum(diasbpMen$DIASBP)
+```
+#Answer 3:K
+```{r}
+boxplot(sysbpWomen$SYSBP)
+```
+#symmetric distribution and no 
+```{r}
+boxplot(sysbpMen$SYSBP)
+```
+#symmetric distribution and 2 outliners
+```{r}
+boxplot(diasbpWomen$DIASBP)
+```
+#symmetric distribution and no outliners
+```{r}
+boxplot(diasbpMen$DIASBP)
+```
+#skewed right and 3 outliners
+
+#Answer 3:L
+```{r}
+stem(sysbpWomen$SYSBP)
+stem(sysbpMen$SYSBP)
+stem(diasbpWomen$DIASBP)
+stem(diasbpMen$DIASBP)
+```
+#Answer 3:M;1
+```{r}
+hist(sysbpWomen$SYSBP , breaks = 4)
+hist(sysbpMen$SYSBP , breaks = 4)
+hist(diasbpWomen$DIASBP , breaks = 4)
+hist(diasbpMen$DIASBP , breaks = 4)
+```
+#Answer 3:M;2
+```{r}
+hist(sysbpWomen$SYSBP)
+hist(sysbpMen$SYSBP)
+hist(diasbpWomen$DIASBP)
+hist(diasbpMen$DIASBP)
+```
+#Answer 3:M:3 second version is better than first,because we can see clearly our variable in second one.But first one we can miss them.
+
+#Answer 3:N
+```{r}
+dotchart(sysbpWomen$SYSBP)
+dotchart(sysbpMen$SYSBP)
+dotchart(diasbpWomen$DIASBP)
+dotchart(diasbpMen$DIASBP)
+```
+#only diasbpmen is moundshaped
+
+#Answer 3:O we can use tchebyseff's theorem for all of our data because in tchebyseff's theorem says that "Applies that any set of measurements; large or small,mound-shaped or skewed"
+
+#Answer 3:P we can use empirical law for diasbpMen and sysbpWomen graphs,because they are mound shaped.
+
+#Answer 3:Q
+```{r}
+compareDotPlotSys <- list('SysbpWomen' = sysbpWomen$SYSBP,'SysbpMen' = sysbpMen$SYSBP)
+stripchart(compareDotPlotSys,
+           main = 'Compare systolic blood pressure',
+           xlab = 'Systolic Blood P.',
+           ylab = 'Age',
+           col = c('violet', 'purple'),
+           pch = 16,
+           method = 'stack')
+compareDotPlotDias <- list('DiasbpWomen' = diasbpWomen$DIASBP,'DiasbpMen' = diasbpMen$DIASBP)
+stripchart(compareDotPlotDias,
+           main = 'Compare diastolic blood pressure',
+           xlab = 'Systolic Blood P.',
+           ylab = 'Age',
+           col = c('steelblue', 'coral2'),
+           pch = 20,
+           method = 'stack')
+
+```
+
+
+#Answer 3:R
+```{r}
+hist(sysbpWomen$SYSBP,prob = TRUE)
+hist(sysbpMen$SYSBP,prob = TRUE)
+hist(diasbpMen$DIASBP,prob = TRUE)
+hist(diasbpWomen$DIASBP,prob = TRUE)
+```
+
+#Answer 3:S
+```{r}
+zSysWomenLargest = (max(sysbpWomen$SYSBP)-mean(sysbpWomen$SYSBP))/sd(sysbpWomen$SYSBP)
+zSysWomenLargest
+
+zSysWomenSmallest = (min(sysbpWomen$SYSBP)-mean(sysbpWomen$SYSBP))/sd(sysbpWomen$SYSBP)
+zSysWomenSmallest 
+
+zSysMenLargest = (max(sysbpMen$SYSBP)-mean(sysbpMen$SYSBP))/sd(sysbpMen$SYSBP)
+zSysMenLargest
+
+zSysMenSmallest = (min(sysbpMen$SYSBP)-mean(sysbpMen$SYSBP))/sd(sysbpMen$SYSBP)
+zSysMenSmallest
+
+zDiasMenLargest = (max(diasbpMen$DIASBP)-mean(diasbpMen$DIASBP))/sd(diasbpMen$DIASBP)
+zDiasMenLargest 
+
+zDiasMenSmallest = (min(diasbpMen$DIASBP)-mean(diasbpMen$DIASBP))/sd(diasbpMen$DIASBP)
+zDiasMenSmallest
+
+zDiasWomenLargest = (max(diasbpWomen$DIASBP)-mean(diasbpWomen$DIASBP))/sd(diasbpWomen$DIASBP)
+zDiasWomenLargest
+
+zDiasWomenSmallest = (min(diasbpWomen$DIASBP)-mean(diasbpWomen$DIASBP))/sd(diasbpWomen$DIASBP)
+zDiasWomenSmallest
+```
+#In systolic blood pressure for women data;there can be a outlier because Largest z-score is bigger than 3.
+#In systolic blood pressure for men data;there can be a outlier because Largest z-score is bigger than 3.
+#In diastolic blood pressure for men data;there can be a outlier because largest and smallest z-scores are bigger than 3.
+#In diastolic blood pressure for women data;there can be a outlier because largest z-score is bigger than 3.
